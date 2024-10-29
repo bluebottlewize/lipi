@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class KeyboardCanvas extends View {
 
     public interface OnKeyboardActionListener {
-        void onWritten(ArrayList<Point> points);
+        void onWritten(ArrayList<Point> points, String letter);
     }
 
     private OnKeyboardActionListener mKeyboardActionListener;
@@ -41,6 +41,8 @@ public class KeyboardCanvas extends View {
     private Canvas mCanvas;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
+    Grahyam grahyam;
+
     // Constructors to initialise all the attributes
     public KeyboardCanvas(Context context) {
         this(context, null);
@@ -61,6 +63,8 @@ public class KeyboardCanvas extends View {
 
         // 0xff=255 in decimal
         mPaint.setAlpha(0xff);
+
+        grahyam = new Grahyam(context);
     }
 
     // this method instantiate the bitmap and object
@@ -204,7 +208,10 @@ public class KeyboardCanvas extends View {
                     {
                         System.out.println(p.x + " " + p.y);
                     }
-                    mKeyboardActionListener.onWritten(points);
+
+                    String result = grahyam.runInference(points);
+
+                    mKeyboardActionListener.onWritten(points, result);
                 }
                 catch (Exception e)
                 {

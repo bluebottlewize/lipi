@@ -44,11 +44,10 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
     }
 
     @Override
-    public void onWritten(ArrayList<Point> points) {
-        int letter = 97;
+    public void onWritten(ArrayList<Point> points, String letter) {
         InputConnection ic = getCurrentInputConnection();
-        ic.commitText("" + (char) letter, 1);
-        Toast.makeText(this.getApplicationContext(), "" + letter, Toast.LENGTH_SHORT).show();
+        ic.commitText(letter, 1);
+        Toast.makeText(this.getApplicationContext(), letter, Toast.LENGTH_SHORT).show();
 
         for (Point p : points)
         {
