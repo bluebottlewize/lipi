@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/keyboard_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:orientation="vertical">
 
@@ -12,6 +12,14 @@
         android:id="@+id/keyboard_canvas"
         android:layout_width="match_parent"
         android:layout_height="250dp" />
+
+    <ImageButton
+        android:id="@+id/space_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-45dp"
+        app:srcCompat="@drawable/baseline_space_bar_30" />
 
 </LinearLayout>
 

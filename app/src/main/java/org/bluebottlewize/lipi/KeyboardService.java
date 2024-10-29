@@ -4,6 +4,7 @@ import static com.google.android.material.internal.ViewUtils.dpToPx;
 
 import android.graphics.Point;
 import android.inputmethodservice.InputMethodService;
+import android.media.ImageReader;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,6 +28,17 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
         View keyboardLayout = getLayoutInflater().inflate(R.layout.keyboard_layout, null);
 //        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200); // Convert 200dp to pixels);
 //        keyboardLayout.setLayoutParams(params);
+
+        ImageButton spaceButton = keyboardLayout.findViewById(R.id.space_button);
+
+        spaceButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                InputMethodManager imeManager = (InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE);
+                imeManager.showInputMethodPicker();
+                return false;
+            }
+        });
 
         KeyboardCanvas canvas = keyboardLayout.findViewById(R.id.keyboard_canvas);
         canvas.setOnKeyboardActionListener(this);
