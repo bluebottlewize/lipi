@@ -2,6 +2,8 @@ package org.bluebottlewize.lipi;
 
 public final class Alphabets {
 
+    public static final String ZERO_WIDTH_SPACE = "\u200B";
+
     //
     public static final String MAL_ANUSWARA_ABV = "\u0D00";
     public static final String MAL_CHANDRABINDU = "\u0D01";
@@ -80,7 +82,7 @@ public final class Alphabets {
     public static final String MAL_VOWEL_AI             = "\u0D48";
     public static final String MAL_VOWEL_O              = "\u0D4A";
     public static final String MAL_VOWEL_OO             = "\u0D4B";
-    public static final String MAL_VOWEL_OU             = "\u0D4C";
+    public static final String MAL_VOWEL_OU             = "\u0D57";
     public static final String MAL_VOWEL_VIRAMAM        = "\u0D4D";
     public static final String MAL_VOWEL_DOT            = "\u0D4E";
 

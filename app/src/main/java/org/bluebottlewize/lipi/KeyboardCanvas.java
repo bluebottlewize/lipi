@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class KeyboardCanvas extends View {
 
     public interface OnKeyboardActionListener {
-        void onWritten(ArrayList<Point> points, String letter);
+        void onWritten(ArrayList<Point> points, String[] predictions);
     }
 
     private OnKeyboardActionListener mKeyboardActionListener;
@@ -226,7 +226,7 @@ public class KeyboardCanvas extends View {
                         System.out.println(p.x + " " + p.y);
                     }
 
-                    String result = grahyam.runInference(points);
+                    String[] result = grahyam.runInference(points);
 
                     mKeyboardActionListener.onWritten(points, result);
                 }

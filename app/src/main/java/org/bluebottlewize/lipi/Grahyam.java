@@ -8,6 +8,8 @@ import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_ERU;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_I;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_O;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_AA;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_E;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
@@ -42,7 +44,9 @@ public class Grahyam
             MAL_VYANJANAKSHARAM_KHA,
             MAL_VYANJANAKSHARAM_GA,
             MAL_VYANJANAKSHARAM_GHA,
-            MAL_VYANJANAKSHARAM_NGA
+            MAL_VYANJANAKSHARAM_NGA,
+            MAL_VOWEL_AA,
+            MAL_VOWEL_E
     };
 
 
@@ -94,9 +98,9 @@ public class Grahyam
 //        }
     }
 
-    public String runInference(ArrayList<Point> points)
+    public String[] runInference(ArrayList<Point> points)
     {
-        String result = "";
+        String[] result = new String[3];
 
         ArrayList<Point> normalized_points = normalize(points);
 
@@ -110,26 +114,59 @@ public class Grahyam
             inputTensor[0][i][1] = padded_points.get(i).y;
         }
 
-        float[][] outputTensor = new float[1][12];
+        float[][] outputTensor = new float[1][14];
 
         tflite.run(inputTensor, outputTensor);
 
         float max = outputTensor[0][0];
         int prediction = 0;
 
-        for (int i = 1;i < 12;++i)
+        result[0] = letters[prediction];
+        result[1] = letters[prediction];
+        result[2] = letters[prediction];
+
+        float[] topThree = {-1, -1, -1};
+
+        for (int i = 0; i < 14; ++i)
         {
-            if (max < outputTensor[0][i])
-            {
-                max = outputTensor[0][i];
-                prediction = i;
+            float num = outputTensor[0][i];
+
+            if (num > topThree[0]) {
+                topThree[2] = topThree[1];
+                topThree[1] = topThree[0];
+                topThree[0] = num;
+
+                result[2] = result[1];
+                result[1] = result[0];
+                result[0] = letters[i];
+            } else if (num > topThree[1]) {
+                topThree[2] = topThree[1];
+                topThree[1] = num;
+
+                result[2] = result[1];
+                result[1] = letters[i];
+            } else if (num > topThree[2]) {
+                topThree[2] = num;
+
+                result[2] = letters[i];
             }
         }
 
-        System.out.println(max);
-        System.out.println(prediction);
 
-        result += letters[prediction];
+//        for (int i = 1;i < 12;++i)
+//        {
+//            if (max < outputTensor[0][i])
+//            {
+//                max = outputTensor[0][i];
+//                prediction = i;
+//                result[2] = result[1];
+//                result[1] = result[0];
+//                result[0] = letters[prediction];
+//            }
+//        }
+
+//        System.out.println(max);
+//        System.out.println(prediction);
 
         return result;
     }
@@ -170,23 +207,23 @@ public class Grahyam
         int x_range = x_max - x_min;
         int y_range = y_max - y_min;
 
-        int n_factor_x = x_range / n_range;
-        int n_factor_y = y_range / n_range;
+        float n_factor_x = (float) x_range / n_range;
+        float n_factor_y = (float) y_range / n_range;
 
-        int n_factor = n_factor_x;
+        float n_factor = n_factor_x;
 
         if (y_range > x_range) {
             n_factor = n_factor_y;
         }
 
-        int n_min_x = x_min / n_factor;
-        int n_min_y = y_min / n_factor;
+        int n_min_x = (int) (x_min / n_factor);
+        int n_min_y = (int) (y_min / n_factor);
 
         for (Point p : points)
         {
             Point new_p = new Point();
-            new_p.x = (p.x / n_factor) - n_min_x;
-            new_p.y = (p.y / n_factor) - n_min_y;
+            new_p.x = ((int) (p.x / n_factor) - n_min_x);
+            new_p.y = ((int) (p.y / n_factor) - n_min_y);
 
             normalized_points.add(new_p);
         }

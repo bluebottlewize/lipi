@@ -7,6 +7,9 @@ import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_ERU;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_I;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_O;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_AA;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_E;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_OU;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
@@ -72,7 +75,9 @@ public class MainActivity extends AppCompatActivity {
             MAL_VYANJANAKSHARAM_KHA,
             MAL_VYANJANAKSHARAM_GA,
             MAL_VYANJANAKSHARAM_GHA,
-            MAL_VYANJANAKSHARAM_NGA
+            MAL_VYANJANAKSHARAM_NGA,
+            MAL_VOWEL_AA,
+            MAL_VOWEL_E
     };
 
     @Override
@@ -106,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
 
         canvas.setOnKeyboardActionListener(new KeyboardCanvas.OnKeyboardActionListener() {
             @Override
-            public void onWritten(ArrayList<Point> points, String letter) {
-                String result = grahyam.runInference(points);
-                System.out.println(letter);
+            public void onWritten(ArrayList<Point> points, String[] predictions) {
+                String result = grahyam.runInference(points)[0];
+                System.out.println(predictions[0]);
                 writeToFile(currentLetter, points);
                 nextLetter();
             }
