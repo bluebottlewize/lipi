@@ -83,4 +83,7 @@ public final class Alphabets {
     public static final String MAL_VOWEL_OU             = "\u0D4C";
     public static final String MAL_VOWEL_VIRAMAM        = "\u0D4D";
     public static final String MAL_VOWEL_DOT            = "\u0D4E";
+
+    // KOOTTAKSHARAM todo
+
 }

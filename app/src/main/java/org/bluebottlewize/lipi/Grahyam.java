@@ -1,6 +1,13 @@
 package org.bluebottlewize.lipi;
 import static android.content.ContentValues.TAG;
 
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_A;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_AA;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_E;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_ERU;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_I;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_O;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
@@ -23,7 +30,14 @@ import java.util.Arrays;
 
 public class Grahyam
 {
-    String[] letters = new String[]{
+    String letters[] = new String[]{
+            MAL_SWARAKSHARAM_A,
+            MAL_SWARAKSHARAM_AA,
+            MAL_SWARAKSHARAM_I,
+            MAL_SWARAKSHARAM_U,
+            MAL_SWARAKSHARAM_ERU,
+            MAL_SWARAKSHARAM_E,
+            MAL_SWARAKSHARAM_O,
             MAL_VYANJANAKSHARAM_KA,
             MAL_VYANJANAKSHARAM_KHA,
             MAL_VYANJANAKSHARAM_GA,
@@ -96,14 +110,14 @@ public class Grahyam
             inputTensor[0][i][1] = padded_points.get(i).y;
         }
 
-        float[][] outputTensor = new float[1][5];
+        float[][] outputTensor = new float[1][12];
 
         tflite.run(inputTensor, outputTensor);
 
         float max = outputTensor[0][0];
         int prediction = 0;
 
-        for (int i = 1;i < 5;++i)
+        for (int i = 1;i < 12;++i)
         {
             if (max < outputTensor[0][i])
             {

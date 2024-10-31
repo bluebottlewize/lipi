@@ -1,5 +1,12 @@
 package org.bluebottlewize.lipi;
 
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_A;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_AA;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_E;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_ERU;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_I;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_O;
+import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
@@ -45,6 +52,29 @@ public class MainActivity extends AppCompatActivity {
     String currentLetter = "";
     int i = 0;
 
+//    String letters[] = new String[]{
+//            MAL_VYANJANAKSHARAM_KA,
+//            MAL_VYANJANAKSHARAM_KHA,
+//            MAL_VYANJANAKSHARAM_GA,
+//            MAL_VYANJANAKSHARAM_GHA,
+//            MAL_VYANJANAKSHARAM_NGA
+//    };
+
+    String letters[] = new String[]{
+            MAL_SWARAKSHARAM_A,
+            MAL_SWARAKSHARAM_AA,
+            MAL_SWARAKSHARAM_I,
+            MAL_SWARAKSHARAM_U,
+            MAL_SWARAKSHARAM_ERU,
+            MAL_SWARAKSHARAM_E,
+            MAL_SWARAKSHARAM_O,
+            MAL_VYANJANAKSHARAM_KA,
+            MAL_VYANJANAKSHARAM_KHA,
+            MAL_VYANJANAKSHARAM_GA,
+            MAL_VYANJANAKSHARAM_GHA,
+            MAL_VYANJANAKSHARAM_NGA
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +107,9 @@ public class MainActivity extends AppCompatActivity {
         canvas.setOnKeyboardActionListener(new KeyboardCanvas.OnKeyboardActionListener() {
             @Override
             public void onWritten(ArrayList<Point> points, String letter) {
-                // String result = grahyam.runInference(points);
+                String result = grahyam.runInference(points);
                 System.out.println(letter);
-                // writeToFile(currentLetter, points);
+                writeToFile(currentLetter, points);
                 nextLetter();
             }
         });
@@ -170,9 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
     void nextLetter()
     {
-        String letters[] = new String[]{MAL_VYANJANAKSHARAM_KA, MAL_VYANJANAKSHARAM_KHA, MAL_VYANJANAKSHARAM_GA, MAL_VYANJANAKSHARAM_GHA, MAL_VYANJANAKSHARAM_NGA};
-
-        currentLetter = letters[i % 5];
+        currentLetter = letters[i % (letters.length)];
         letterbox.setText(currentLetter);
 
         ++i;

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -43,6 +44,17 @@ public class KeyboardCanvas extends View {
 
     Grahyam grahyam;
 
+    Handler clearBoardHandler;
+
+    private final Runnable clearBoard = new Runnable() {
+
+        public void run() {
+            clearBoard();
+        }
+
+    };
+
+
     // Constructors to initialise all the attributes
     public KeyboardCanvas(Context context) {
         this(context, null);
@@ -65,6 +77,8 @@ public class KeyboardCanvas extends View {
         mPaint.setAlpha(0xff);
 
         grahyam = new Grahyam(context);
+
+        clearBoardHandler = new Handler();
     }
 
     // this method instantiate the bitmap and object
@@ -192,16 +206,19 @@ public class KeyboardCanvas extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                stopBoardClearTimer();
                 newCoordinateList();
                 touchStart(x, y);
                 invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
+                stopBoardClearTimer();
                 touchMove(x, y);
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                paths = new ArrayList<>();
+                // paths = new ArrayList<>();
+                startBoardClearTimer();
                 touchUp();
                 try {
                     for (Point p : points)
@@ -216,6 +233,8 @@ public class KeyboardCanvas extends View {
                 catch (Exception e)
                 {
                     e.printStackTrace();
+                    invalidate();
+                    return false;
                 }
                 invalidate();
                 break;
@@ -237,5 +256,27 @@ public class KeyboardCanvas extends View {
     private void newCoordinateList()
     {
         points = new ArrayList<>();
+    }
+
+    private void clearBoard()
+    {
+        paths = new ArrayList<>();
+        invalidate();
+    }
+
+    private void startBoardClearTimer()
+    {
+        clearBoardHandler.postDelayed(clearBoard, 1500);
+    }
+
+    private void stopBoardClearTimer()
+    {
+        clearBoardHandler.removeCallbacks(clearBoard);
+    }
+
+    private void resetBoardClearTimer()
+    {
+        stopBoardClearTimer();
+        startBoardClearTimer();
     }
 }

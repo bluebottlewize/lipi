@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 public class KeyboardService extends InputMethodService implements KeyboardCanvas.OnKeyboardActionListener {
 
+    InputConnection inputConnection;
+
     @Override
     public View onCreateInputView() {
         // get the KeyboardView and add our Keyboard layout to it
@@ -30,6 +32,9 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
 //        keyboardLayout.setLayoutParams(params);
 
         ImageButton spaceButton = keyboardLayout.findViewById(R.id.space_button);
+        ImageButton backspaceButton = keyboardLayout.findViewById(R.id.backspace_button);
+
+        inputConnection = getCurrentInputConnection();
 
         spaceButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -37,6 +42,13 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
                 InputMethodManager imeManager = (InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE);
                 imeManager.showInputMethodPicker();
                 return false;
+            }
+        });
+
+        backspaceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputConnection.deleteSurroundingText(1, 0);
             }
         });
 
@@ -59,8 +71,7 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
 
     @Override
     public void onWritten(ArrayList<Point> points, String letter) {
-        InputConnection ic = getCurrentInputConnection();
-        ic.commitText(letter, 1);
+        inputConnection.commitText(letter, 1);
         Toast.makeText(this.getApplicationContext(), letter, Toast.LENGTH_SHORT).show();
 
         for (Point p : points)
