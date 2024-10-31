@@ -1,5 +1,6 @@
 package org.bluebottlewize.lipi;
 
+import static org.bluebottlewize.lipi.Alphabets.MAL_KOOTTAKSHARAM_SSA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_A;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_AA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_E;
@@ -64,20 +65,21 @@ public class MainActivity extends AppCompatActivity {
 //    };
 
     String letters[] = new String[]{
-            MAL_SWARAKSHARAM_A,
-            MAL_SWARAKSHARAM_AA,
-            MAL_SWARAKSHARAM_I,
-            MAL_SWARAKSHARAM_U,
-            MAL_SWARAKSHARAM_ERU,
-            MAL_SWARAKSHARAM_E,
-            MAL_SWARAKSHARAM_O,
-            MAL_VYANJANAKSHARAM_KA,
-            MAL_VYANJANAKSHARAM_KHA,
-            MAL_VYANJANAKSHARAM_GA,
-            MAL_VYANJANAKSHARAM_GHA,
-            MAL_VYANJANAKSHARAM_NGA,
-            MAL_VOWEL_AA,
-            MAL_VOWEL_E
+//            MAL_SWARAKSHARAM_A,
+//            MAL_SWARAKSHARAM_AA,
+//            MAL_SWARAKSHARAM_I,
+//            MAL_SWARAKSHARAM_U,
+//            MAL_SWARAKSHARAM_ERU,
+//            MAL_SWARAKSHARAM_E,
+//            MAL_SWARAKSHARAM_O,
+//            MAL_VYANJANAKSHARAM_KA,
+//            MAL_VYANJANAKSHARAM_KHA,
+//            MAL_VYANJANAKSHARAM_GA,
+//            MAL_VYANJANAKSHARAM_GHA,
+//            MAL_VYANJANAKSHARAM_NGA,
+//            MAL_VOWEL_AA,
+//            MAL_VOWEL_E
+            MAL_KOOTTAKSHARAM_SSA
     };
 
     @Override
@@ -111,18 +113,18 @@ public class MainActivity extends AppCompatActivity {
 
         canvas.setOnKeyboardActionListener(new KeyboardCanvas.OnKeyboardActionListener() {
             @Override
-            public void onWritten(ArrayList<Point> points, String[] predictions) {
-                String result = grahyam.runInference(points)[0];
+            public void onWritten(ArrayList<Point> points, ArrayList<Point> previous_points, String[] predictions) {
+                // String result = grahyam.runInference(points)[0];
                 System.out.println(predictions[0]);
-                writeToFile(currentLetter, points);
+                // writeToFile(currentLetter, points);
                 nextLetter();
             }
         });
 
 
 
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-        startActivityForResult(intent, REQUEST_CODE_OPEN_DIRECTORY);
+        // Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        // startActivityForResult(intent, REQUEST_CODE_OPEN_DIRECTORY);
     }
 
 

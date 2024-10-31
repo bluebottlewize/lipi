@@ -1,7 +1,9 @@
 package org.bluebottlewize.lipi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,12 +19,13 @@ import java.util.ArrayList;
 public class KeyboardCanvas extends View {
 
     public interface OnKeyboardActionListener {
-        void onWritten(ArrayList<Point> points, String[] predictions);
+        void onWritten(ArrayList<Point> points, ArrayList<Point> previous_points, String[] predictions);
     }
 
     private OnKeyboardActionListener mKeyboardActionListener;
 
     private ArrayList<Point> points;
+    private ArrayList<Point> previous_points;
 
     private static final float TOUCH_TOLERANCE = 1;
     private float mX, mY;
@@ -32,6 +35,7 @@ public class KeyboardCanvas extends View {
     // and style information about
     // how to draw the geometries,text and bitmaps
     private Paint mPaint;
+    private Paint mPaintBlur;
 
     // ArrayList to store all the strokes
     // drawn by the user on the Canvas
@@ -49,6 +53,8 @@ public class KeyboardCanvas extends View {
     private final Runnable clearBoard = new Runnable() {
 
         public void run() {
+//            mKeyboardActionListener.onWritten(points, null);
+            newCoordinateList();
             clearBoard();
         }
 
@@ -72,13 +78,21 @@ public class KeyboardCanvas extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
-
         // 0xff=255 in decimal
         mPaint.setAlpha(0xff);
+
+        mPaintBlur = new Paint();
+        mPaintBlur.set(mPaint);
+        mPaintBlur.setColor(getResources().getColor(R.color.primary_foreground));
+        mPaintBlur.setStrokeWidth(5f);
+        mPaintBlur.setMaskFilter(new BlurMaskFilter(2, BlurMaskFilter.Blur.NORMAL));
 
         grahyam = new Grahyam(context);
 
         clearBoardHandler = new Handler();
+
+        points = new ArrayList<>();
+        previous_points = new ArrayList<>();
     }
 
     // this method instantiate the bitmap and object
@@ -89,10 +103,10 @@ public class KeyboardCanvas extends View {
 
         // set an initial color of the brush
         currentColor = getResources().getColor(R.color.primary_foreground);
-        mCanvas.drawARGB(255, 0, 225, 255);
+        mCanvas.drawARGB(255, 255, 225, 255);
 
         // set an initial brush size
-        strokeWidth = 10;
+        strokeWidth = 5;
     }
 
     // sets the current color of stroke
@@ -128,7 +142,7 @@ public class KeyboardCanvas extends View {
         canvas.save();
 
         // DEFAULT color of the canvas
-        int backgroundColor = Color.WHITE;
+        int backgroundColor = getResources().getColor(R.color.primary_background);
         mCanvas.drawColor(backgroundColor);
 
         // now, we iterate over the list of paths
@@ -137,6 +151,7 @@ public class KeyboardCanvas extends View {
             mPaint.setColor(fp.color);
             mPaint.setStrokeWidth(fp.strokeWidth);
             mCanvas.drawPath(fp.path, mPaint);
+            mCanvas.drawPath(fp.path, mPaintBlur);
         }
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
         canvas.restore();
@@ -220,15 +235,16 @@ public class KeyboardCanvas extends View {
                 // paths = new ArrayList<>();
                 startBoardClearTimer();
                 touchUp();
+                invalidate();
                 try {
                     for (Point p : points)
                     {
                         System.out.println(p.x + " " + p.y);
                     }
 
-                    String[] result = grahyam.runInference(points);
+                     String[] result = grahyam.runInference(points);
 
-                    mKeyboardActionListener.onWritten(points, result);
+                     mKeyboardActionListener.onWritten(points, previous_points, result);
                 }
                 catch (Exception e)
                 {
@@ -236,7 +252,6 @@ public class KeyboardCanvas extends View {
                     invalidate();
                     return false;
                 }
-                invalidate();
                 break;
         }
         return true;
@@ -255,6 +270,7 @@ public class KeyboardCanvas extends View {
 
     private void newCoordinateList()
     {
+        previous_points = points;
         points = new ArrayList<>();
     }
 
@@ -266,7 +282,7 @@ public class KeyboardCanvas extends View {
 
     private void startBoardClearTimer()
     {
-        clearBoardHandler.postDelayed(clearBoard, 1500);
+        clearBoardHandler.postDelayed(clearBoard, 1000);
     }
 
     private void stopBoardClearTimer()

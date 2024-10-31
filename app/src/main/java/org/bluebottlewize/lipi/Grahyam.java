@@ -1,6 +1,7 @@
 package org.bluebottlewize.lipi;
 import static android.content.ContentValues.TAG;
 
+import static org.bluebottlewize.lipi.Alphabets.MAL_KOOTTAKSHARAM_SSA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_A;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_AA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_E;
@@ -10,6 +11,7 @@ import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_O;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_AA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_E;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_EE;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
@@ -46,7 +48,8 @@ public class Grahyam
             MAL_VYANJANAKSHARAM_GHA,
             MAL_VYANJANAKSHARAM_NGA,
             MAL_VOWEL_AA,
-            MAL_VOWEL_E
+            MAL_VOWEL_E,
+            MAL_KOOTTAKSHARAM_SSA
     };
 
 
@@ -114,7 +117,7 @@ public class Grahyam
             inputTensor[0][i][1] = padded_points.get(i).y;
         }
 
-        float[][] outputTensor = new float[1][14];
+        float[][] outputTensor = new float[1][letters.length];
 
         tflite.run(inputTensor, outputTensor);
 
@@ -127,7 +130,7 @@ public class Grahyam
 
         float[] topThree = {-1, -1, -1};
 
-        for (int i = 0; i < 14; ++i)
+        for (int i = 0; i < letters.length; ++i)
         {
             float num = outputTensor[0][i];
 
@@ -153,6 +156,7 @@ public class Grahyam
         }
 
 
+
 //        for (int i = 1;i < 12;++i)
 //        {
 //            if (max < outputTensor[0][i])
@@ -170,6 +174,94 @@ public class Grahyam
 
         return result;
     }
+
+
+    public String[] runCombinedInference(ArrayList<Point> points)
+    {
+        String[] result = new String[3];
+
+        ArrayList<Point> normalized_points = normalize(points);
+
+        ArrayList<Point> padded_points = pad(normalized_points);
+
+        float[][][] inputTensor = new float[1][137][2];
+
+        for (int i = 0;i < 137;++i)
+        {
+            inputTensor[0][i][0] = padded_points.get(i).x;
+            inputTensor[0][i][1] = padded_points.get(i).y;
+        }
+
+        float[][] outputTensor = new float[1][letters.length];
+
+        tflite.run(inputTensor, outputTensor);
+
+        float max = outputTensor[0][0];
+        int prediction = 0;
+
+        result[0] = letters[prediction];
+        result[1] = letters[prediction];
+        result[2] = letters[prediction];
+
+        float[] topThree = {-1, -1, -1};
+
+        for (int i = 0; i < letters.length; ++i)
+        {
+            float num = outputTensor[0][i];
+
+            if (num > topThree[0]) {
+                topThree[2] = topThree[1];
+                topThree[1] = topThree[0];
+                topThree[0] = num;
+
+                result[2] = result[1];
+                result[1] = result[0];
+                result[0] = letters[i];
+            } else if (num > topThree[1]) {
+                topThree[2] = topThree[1];
+                topThree[1] = num;
+
+                result[2] = result[1];
+                result[1] = letters[i];
+            } else if (num > topThree[2]) {
+                topThree[2] = num;
+
+                result[2] = letters[i];
+            }
+        }
+
+
+
+//        for (int i = 1;i < 12;++i)
+//        {
+//            if (max < outputTensor[0][i])
+//            {
+//                max = outputTensor[0][i];
+//                prediction = i;
+//                result[2] = result[1];
+//                result[1] = result[0];
+//                result[0] = letters[prediction];
+//            }
+//        }
+
+        if (!result[0].equals(MAL_KOOTTAKSHARAM_SSA))
+        {
+            return null;
+        }
+
+        System.out.println(result[0]);
+        System.out.println(topThree[0]);
+
+        if (topThree[0] > 0.9)
+        {
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 
     public ArrayList<Point> normalize(ArrayList<Point> points)
     {

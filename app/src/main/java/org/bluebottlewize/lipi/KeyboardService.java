@@ -34,6 +34,8 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
 
     String composingText = "";
 
+    Grahyam grahyam;
+
     @Override
     public View onCreateInputView() {
         // get the KeyboardView and add our Keyboard layout to it
@@ -45,6 +47,8 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
 
         ImageButton spaceButton = keyboardLayout.findViewById(R.id.space_button);
         ImageButton backspaceButton = keyboardLayout.findViewById(R.id.backspace_button);
+
+        grahyam = new Grahyam(this);
 
         inputConnection = getCurrentInputConnection();
 
@@ -122,10 +126,25 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
     }
 
     @Override
-    public void onWritten(ArrayList<Point> points, String[] predictions) {
+    public void onWritten(ArrayList<Point> points, ArrayList<Point> previous_points, String[] predictions) {
 
         System.out.println(composingText);
 //        inputConnection.commitText(predictions[0], 1);
+
+        ArrayList<Point> combined_points = new ArrayList<>(previous_points);
+        combined_points.addAll(points);
+
+        if (combined_points.size() < 137)
+        {
+            String[] new_prediction = grahyam.runCombinedInference(combined_points);
+
+            if (new_prediction != null)
+            {
+                inputConnection.deleteSurroundingText(1,0);
+                inputConnection.commitText(new_prediction[0], 1);
+                return;
+            }
+        }
 
         if (predictions[0] == MAL_VOWEL_E)
         {
