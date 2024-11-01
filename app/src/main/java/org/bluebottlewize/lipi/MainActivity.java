@@ -1,5 +1,11 @@
 package org.bluebottlewize.lipi;
 
+import static org.bluebottlewize.lipi.Alphabets.CHILLAKSHARAMS;
+import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_CONSONANT_RA;
+import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_CONSONANT_VA;
+import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_CONSONANT_YA;
+import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_VOWELS;
+import static org.bluebottlewize.lipi.Alphabets.MAL_KOOTTAKSHARAMS;
 import static org.bluebottlewize.lipi.Alphabets.MAL_KOOTTAKSHARAM_SSA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_A;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_AA;
@@ -10,12 +16,25 @@ import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_O;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_AA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_E;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_EE;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_I;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_II;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_OU;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_R;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_U;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_UU;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_VIRAMAM;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KHA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_NGA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_CA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_KA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_PA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_TA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_TTA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_YA;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,7 +43,9 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,11 +58,13 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.documentfile.provider.DocumentFile;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_OPEN_DIRECTORY = 200;
 
     TextView letterbox;
+
+    EditText load_box;
 
     String currentLetter = "";
     int i = 0;
@@ -64,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 //            MAL_VYANJANAKSHARAM_NGA
 //    };
 
-    String letters[] = new String[]{
+//    String[] letters = new String[]{
 //            MAL_SWARAKSHARAM_A,
 //            MAL_SWARAKSHARAM_AA,
 //            MAL_SWARAKSHARAM_I,
@@ -79,7 +104,29 @@ public class MainActivity extends AppCompatActivity {
 //            MAL_VYANJANAKSHARAM_NGA,
 //            MAL_VOWEL_AA,
 //            MAL_VOWEL_E
-            MAL_KOOTTAKSHARAM_SSA
+//            MAL_KOOTTAKSHARAM_SSA
+//    };
+
+    String[] letters;
+
+    String[] letters_0 = new String[]{
+//            MAL_VOWEL_AA,
+            MAL_VOWEL_I,
+            MAL_VOWEL_II,
+            MAL_VOWEL_U,
+            MAL_VOWEL_UU,
+            MAL_VOWEL_R,
+//            MAL_VOWEL_E,
+            MAL_VOWEL_EE,
+//            MAL_VOWEL_AI,
+//            MAL_VOWEL_O,
+//            MAL_VOWEL_OO,
+            MAL_VOWEL_OU,
+            MAL_VOWEL_VIRAMAM,
+            MAL_HALF_CONSONANT_YA,
+            MAL_HALF_CONSONANT_RA,
+            MAL_HALF_CONSONANT_VA
+//            MAL_VOWEL_DOT
     };
 
     @Override
@@ -109,22 +156,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        load_box = findViewById(R.id.load_box);
+
+        letters = Arrays.copyOf(letters_0, letters_0.length);
+
         nextLetter();
 
         canvas.setOnKeyboardActionListener(new KeyboardCanvas.OnKeyboardActionListener() {
             @Override
             public void onWritten(ArrayList<Point> points, ArrayList<Point> previous_points, String[] predictions) {
                 // String result = grahyam.runInference(points)[0];
-                System.out.println(predictions[0]);
-                // writeToFile(currentLetter, points);
-                nextLetter();
+                // System.out.println(predictions[0]);
+//                System.out.println(points.size());
+//                writeToFile(currentLetter, points);
+//                nextLetter();
             }
         });
 
 
-
-        // Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-        // startActivityForResult(intent, REQUEST_CODE_OPEN_DIRECTORY);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        startActivityForResult(intent, REQUEST_CODE_OPEN_DIRECTORY);
     }
 
 
@@ -142,17 +193,18 @@ public class MainActivity extends AppCompatActivity {
         getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
     }
 
-    public void writeToFile(String letter, ArrayList<Point> points)
-    {
-        DocumentFile savedFolder = DocumentFile.fromTreeUri(this, savedDirectory);
+    public void writeToFile(String letter, ArrayList<Point> points) {
+
+        File train_dir = this.getDir("mal-htr", MODE_PRIVATE);
+
+        DocumentFile savedFolder = DocumentFile.fromFile(train_dir);
         String filename = null;
 
         assert savedFolder != null;
 
         DocumentFile letterFolder = savedFolder.findFile(letter);
 
-        if (letterFolder == null)
-        {
+        if (letterFolder == null) {
             letterFolder = savedFolder.createDirectory(letter);
         }
 
@@ -175,11 +227,9 @@ public class MainActivity extends AppCompatActivity {
 
         String newFileName = null;
 
-        if (filename == null)
-        {
+        if (filename == null) {
             newFileName = letter + "_" + String.format("%06d", 1);
-        }
-        else {
+        } else {
             int last = Integer.parseInt(filename.substring(filename.indexOf('_') + 1, filename.indexOf('_') + 1 + 6));
             ++last;
             newFileName = letter + "_" + String.format("%06d", last);
@@ -193,11 +243,13 @@ public class MainActivity extends AppCompatActivity {
 
                 // Write content to the file
 
-                for (Point p : points)
-                {
-                    writer.write(p.x + " " + p.y + "\n");
+                StringBuilder buffer = new StringBuilder();
+
+                for (Point p : points) {
+                    buffer.append(p.x).append(" ").append(p.y).append("\n");
                 }
 
+                writer.write(buffer.toString());
                 writer.flush();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -205,11 +257,89 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void nextLetter()
-    {
+    void nextLetter() {
         currentLetter = letters[i % (letters.length)];
         letterbox.setText(currentLetter);
 
         ++i;
+    }
+
+    public void exportData(View view) {
+        ZipUtils.zipFolderAndSaveToExternalStorage(this, "mal-htr", savedDirectory);
+    }
+
+    public void saveCoordinates(View view) {
+        System.out.println(canvas.points.size());
+        writeToFile(currentLetter, canvas.points);
+        nextLetter();
+
+        canvas.newCoordinateList();
+        canvas.clearBoard();
+    }
+
+    public void cancelCoordinates(View view)
+    {
+        canvas.newCoordinateList();
+        canvas.clearBoard();
+    }
+
+
+    public void loadLetters(View view)
+    {
+        String load_no = load_box.getText().toString();
+
+        int no = 0;
+
+        if (load_no.isEmpty())
+        {
+            no = 0;
+        }
+        else
+        {
+            try {
+                no = Integer.parseInt(load_no);
+            }
+            catch (Exception e)
+            {
+                no = 0;
+            }
+        }
+
+        switch (no)
+        {
+            case 0:
+                letters = Arrays.copyOf(letters_0, letters_0.length);
+                break;
+            case 1:
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_KA, VYANJANAKSHARAMS_KA.length);
+                break;
+            case 2:
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_CA, VYANJANAKSHARAMS_CA.length);
+                break;
+            case 3:
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_TTA, VYANJANAKSHARAMS_TTA.length);
+                break;
+            case 4:
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_TA, VYANJANAKSHARAMS_TA.length);
+                break;
+            case 5:
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_PA, VYANJANAKSHARAMS_PA.length);
+                break;
+            case 6:
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_YA, VYANJANAKSHARAMS_YA.length);
+                break;
+            case 7:
+                letters = Arrays.copyOf(CHILLAKSHARAMS, CHILLAKSHARAMS.length);
+                break;
+            case 8:
+                letters = Arrays.copyOf(MAL_KOOTTAKSHARAMS, MAL_KOOTTAKSHARAMS.length);
+                break;
+            default:
+                letters = Arrays.copyOf(letters_0, letters_0.length);
+                break;
+        }
+
+        i = 0;
+        nextLetter();
     }
 }

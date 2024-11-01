@@ -5,7 +5,38 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary_foreground"
     tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/done_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/custom_key"
+        android:backgroundTint="@color/primary_foreground"
+        android:backgroundTintMode="add"
+        android:onClick="saveCoordinates"
+        android:src="@drawable/baseline_done_24"
+        android:tint="@color/primary_background"
+        app:layout_constraintBottom_toTopOf="@+id/keyboard_canvas"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/cancel_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_key"
+        android:backgroundTint="@color/primary_foreground"
+        android:backgroundTintMode="add"
+        android:onClick="cancelCoordinates"
+        android:src="@drawable/baseline_block_24"
+        android:tint="@color/primary_background"
+        app:layout_constraintBottom_toTopOf="@+id/done_button"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <org.bluebottlewize.lipi.KeyboardCanvas
         android:id="@+id/keyboard_canvas"
@@ -21,14 +52,47 @@
         android:id="@+id/letter_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/primary_background"
-        android:backgroundTint="@color/primary_background"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/primary_background"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/export_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="exportData"
+        android:text="EXPORT"
+        app:layout_constraintBottom_toTopOf="@+id/keyboard_canvas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/load_box"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/export_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/letter_view" />
+
+    <Button
+        android:id="@+id/load_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:onClick="loadLetters"
+        android:text="LOAD"
+        app:layout_constraintBottom_toBottomOf="@+id/load_box"
+        app:layout_constraintStart_toEndOf="@+id/load_box"
+        app:layout_constraintTop_toTopOf="@+id/load_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

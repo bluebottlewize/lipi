@@ -12,6 +12,13 @@ import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_AA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_E;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_EE;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_I;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_II;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_OU;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_R;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_U;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_UU;
+import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_VIRAMAM;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
@@ -47,9 +54,17 @@ public class Grahyam
             MAL_VYANJANAKSHARAM_GA,
             MAL_VYANJANAKSHARAM_GHA,
             MAL_VYANJANAKSHARAM_NGA,
+            MAL_KOOTTAKSHARAM_SSA,
             MAL_VOWEL_AA,
+            MAL_VOWEL_I,
+            MAL_VOWEL_II,
+            MAL_VOWEL_U,
+            MAL_VOWEL_UU,
+            MAL_VOWEL_R,
             MAL_VOWEL_E,
-            MAL_KOOTTAKSHARAM_SSA
+            MAL_VOWEL_EE,
+            MAL_VOWEL_OU,
+            MAL_VOWEL_VIRAMAM,
     };
 
 

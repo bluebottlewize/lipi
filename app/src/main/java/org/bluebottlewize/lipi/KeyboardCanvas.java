@@ -24,7 +24,7 @@ public class KeyboardCanvas extends View {
 
     private OnKeyboardActionListener mKeyboardActionListener;
 
-    private ArrayList<Point> points;
+    public ArrayList<Point> points;
     private ArrayList<Point> previous_points;
 
     private static final float TOUCH_TOLERANCE = 1;
@@ -53,7 +53,9 @@ public class KeyboardCanvas extends View {
     private final Runnable clearBoard = new Runnable() {
 
         public void run() {
-//            mKeyboardActionListener.onWritten(points, null);
+//            uncomment in data collection
+//            comment in new data collection. take points from main activity iteselt
+//            mKeyboardActionListener.onWritten(points, previous_points, null);
             newCoordinateList();
             clearBoard();
         }
@@ -222,7 +224,10 @@ public class KeyboardCanvas extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 stopBoardClearTimer();
-                newCoordinateList();
+
+                // comment in Data collection
+//                newCoordinateList();
+
                 touchStart(x, y);
                 invalidate();
                 break;
@@ -233,21 +238,20 @@ public class KeyboardCanvas extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 // paths = new ArrayList<>();
-                startBoardClearTimer();
+                // comment in new data collection
+//                startBoardClearTimer();
                 touchUp();
                 invalidate();
                 try {
-                    for (Point p : points)
-                    {
+                    for (Point p : points) {
                         System.out.println(p.x + " " + p.y);
                     }
 
-                     String[] result = grahyam.runInference(points);
+                    String[] result = grahyam.runInference(points);
 
-                     mKeyboardActionListener.onWritten(points, previous_points, result);
-                }
-                catch (Exception e)
-                {
+                    // comment in Data collection
+//                    mKeyboardActionListener.onWritten(points, previous_points, result);
+                } catch (Exception e) {
                     e.printStackTrace();
                     invalidate();
                     return false;
@@ -260,38 +264,35 @@ public class KeyboardCanvas extends View {
     public void setOnKeyboardActionListener(OnKeyboardActionListener listener) {
         mKeyboardActionListener = listener;
     }
+
     /**
      * Returns the {@link OnKeyboardActionListener} object.
+     *
      * @return the listener attached to this keyboard
      */
     protected OnKeyboardActionListener getOnKeyboardActionListener() {
         return mKeyboardActionListener;
     }
 
-    private void newCoordinateList()
-    {
+    public void newCoordinateList() {
         previous_points = points;
         points = new ArrayList<>();
     }
 
-    private void clearBoard()
-    {
+    public void clearBoard() {
         paths = new ArrayList<>();
         invalidate();
     }
 
-    private void startBoardClearTimer()
-    {
+    private void startBoardClearTimer() {
         clearBoardHandler.postDelayed(clearBoard, 1000);
     }
 
-    private void stopBoardClearTimer()
-    {
+    private void stopBoardClearTimer() {
         clearBoardHandler.removeCallbacks(clearBoard);
     }
 
-    private void resetBoardClearTimer()
-    {
+    private void resetBoardClearTimer() {
         stopBoardClearTimer();
         startBoardClearTimer();
     }
