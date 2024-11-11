@@ -162,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
 
         nextLetter();
 
+        canvas.isDataCollection = true;
+
         canvas.setOnKeyboardActionListener(new KeyboardCanvas.OnKeyboardActionListener() {
             @Override
             public void onWritten(ArrayList<Point> points, ArrayList<Point> previous_points, String[] predictions) {

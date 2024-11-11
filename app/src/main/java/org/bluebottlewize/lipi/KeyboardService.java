@@ -102,6 +102,7 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
         prediction_box_3 = keyboardLayout.findViewById(R.id.prediction_box_3);
 
         KeyboardCanvas canvas = keyboardLayout.findViewById(R.id.keyboard_canvas);
+        canvas.isDataCollection = false;
         canvas.setOnKeyboardActionListener(this);
 
         ViewTreeObserver vto = canvas.getViewTreeObserver();

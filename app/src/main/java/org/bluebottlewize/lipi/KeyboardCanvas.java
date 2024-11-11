@@ -50,12 +50,16 @@ public class KeyboardCanvas extends View {
 
     Handler clearBoardHandler;
 
+    boolean isDataCollection = false;
+
     private final Runnable clearBoard = new Runnable() {
 
         public void run() {
 //            uncomment in data collection
 //            comment in new data collection. take points from main activity iteselt
-//            mKeyboardActionListener.onWritten(points, previous_points, null);
+//            if (!isDataCollection)
+//                mKeyboardActionListener.onWritten(points, previous_points, null);
+
             newCoordinateList();
             clearBoard();
         }
@@ -226,7 +230,8 @@ public class KeyboardCanvas extends View {
                 stopBoardClearTimer();
 
                 // comment in Data collection
-//                newCoordinateList();
+                if (!isDataCollection)
+                    newCoordinateList();
 
                 touchStart(x, y);
                 invalidate();
@@ -239,7 +244,8 @@ public class KeyboardCanvas extends View {
             case MotionEvent.ACTION_UP:
                 // paths = new ArrayList<>();
                 // comment in new data collection
-//                startBoardClearTimer();
+                if (!isDataCollection)
+                    startBoardClearTimer();
                 touchUp();
                 invalidate();
                 try {
@@ -250,7 +256,8 @@ public class KeyboardCanvas extends View {
                     String[] result = grahyam.runInference(points);
 
                     // comment in Data collection
-//                    mKeyboardActionListener.onWritten(points, previous_points, result);
+                    if (!isDataCollection)
+                        mKeyboardActionListener.onWritten(points, previous_points, result);
                 } catch (Exception e) {
                     e.printStackTrace();
                     invalidate();
