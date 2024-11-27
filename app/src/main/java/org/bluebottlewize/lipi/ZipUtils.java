@@ -3,22 +3,25 @@ package org.bluebottlewize.lipi;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.widget.Toast;
 
 import androidx.documentfile.provider.DocumentFile;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ZipUtils {
+public class ZipUtils
+{
 
     // Method to zip a folder and save to external storage
-    public static void zipFolderAndSaveToExternalStorage(Context context, String folderName, Uri externalDirectory) {
+    public static void zipFolderAndSaveToExternalStorage(Context context, String folderName, Uri externalDirectory)
+    {
         // Get the internal storage directory
         File folderToZip = context.getDir(folderName, Context.MODE_PRIVATE);
 
@@ -28,12 +31,15 @@ public class ZipUtils {
         // File zipFile = new File(Environment.getExternalStorageDirectory(), folderName + ".zip");
 
         Path p = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
             p = Paths.get(outputFile.getUri().getPath());
 
-            try {
+            try
+            {
 
-                try (ZipOutputStream zs = new ZipOutputStream(context.getContentResolver().openOutputStream(outputFile.getUri()))) {
+                try (ZipOutputStream zs = new ZipOutputStream(context.getContentResolver().openOutputStream(outputFile.getUri())))
+                {
                     Path pp = null;
                     pp = Paths.get(folderToZip.toURI());
                     Path finalPp = pp;
@@ -41,11 +47,14 @@ public class ZipUtils {
                             .filter(path -> !Files.isDirectory(path))
                             .forEach(path -> {
                                 ZipEntry zipEntry = new ZipEntry(finalPp.relativize(path).toString());
-                                try {
+                                try
+                                {
                                     zs.putNextEntry(zipEntry);
                                     Files.copy(path, zs);
                                     zs.closeEntry();
-                                } catch (Exception e) {
+                                }
+                                catch (Exception e)
+                                {
                                     System.err.println(e);
                                 }
                             });
@@ -75,20 +84,28 @@ public class ZipUtils {
     }
 
     // Method to zip the contents of a directory
-    private static void zipDirectory(File folder, String zipEntryName, ZipOutputStream zos) throws IOException {
+    private static void zipDirectory(File folder, String zipEntryName, ZipOutputStream zos) throws IOException
+    {
         File[] files = folder.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                if (file.isDirectory()) {
+        if (files != null)
+        {
+            for (File file : files)
+            {
+                if (file.isDirectory())
+                {
                     zipDirectory(file, zipEntryName + "/" + file.getName(), zos);
-                } else {
-                    try (FileInputStream fis = new FileInputStream(file)) {
+                }
+                else
+                {
+                    try (FileInputStream fis = new FileInputStream(file))
+                    {
                         ZipEntry zipEntry = new ZipEntry(zipEntryName + "/" + file.getName());
                         zos.putNextEntry(zipEntry);
 
                         byte[] buffer = new byte[1024];
                         int length;
-                        while ((length = fis.read(buffer)) >= 0) {
+                        while ((length = fis.read(buffer)) >= 0)
+                        {
                             zos.write(buffer, 0, length);
                         }
                         zos.closeEntry();

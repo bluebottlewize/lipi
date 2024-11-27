@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- When the card is pressed -->
+    <item android:drawable="@color/keyPressedColor" android:state_pressed="true" />
+    <!-- When the card is focused -->
+<!--    <item android:drawable="@color/keyFocusedColor" android:state_focused="true" />-->
+    <!-- Default background -->
+    <item android:drawable="@color/keyColor" />
+</selector>

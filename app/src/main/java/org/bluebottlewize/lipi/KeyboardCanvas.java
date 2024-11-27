@@ -1,11 +1,9 @@
 package org.bluebottlewize.lipi;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -16,9 +14,11 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class KeyboardCanvas extends View {
+public class KeyboardCanvas extends View
+{
 
-    public interface OnKeyboardActionListener {
+    public interface OnKeyboardActionListener
+    {
         void onWritten(ArrayList<Point> points, ArrayList<Point> previous_points, String[] predictions);
     }
 
@@ -52,9 +52,11 @@ public class KeyboardCanvas extends View {
 
     boolean isDataCollection = false;
 
-    private final Runnable clearBoard = new Runnable() {
+    private final Runnable clearBoard = new Runnable()
+    {
 
-        public void run() {
+        public void run()
+        {
 //            uncomment in data collection
 //            comment in new data collection. take points from main activity iteselt
 //            if (!isDataCollection)
@@ -68,11 +70,13 @@ public class KeyboardCanvas extends View {
 
 
     // Constructors to initialise all the attributes
-    public KeyboardCanvas(Context context) {
+    public KeyboardCanvas(Context context)
+    {
         this(context, null);
     }
 
-    public KeyboardCanvas(Context context, AttributeSet attrs) {
+    public KeyboardCanvas(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
         mPaint = new Paint();
 
@@ -102,7 +106,8 @@ public class KeyboardCanvas extends View {
     }
 
     // this method instantiate the bitmap and object
-    public void init(int height, int width) {
+    public void init(int height, int width)
+    {
 
         mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
@@ -116,33 +121,39 @@ public class KeyboardCanvas extends View {
     }
 
     // sets the current color of stroke
-    public void setColor(int color) {
+    public void setColor(int color)
+    {
         currentColor = color;
     }
 
     // sets the stroke width
-    public void setStrokeWidth(int width) {
+    public void setStrokeWidth(int width)
+    {
         strokeWidth = width;
     }
 
-    public void undo() {
+    public void undo()
+    {
         // check whether the List is empty or not
         // if empty, the remove method will return an error
-        if (paths.size() != 0) {
+        if (paths.size() != 0)
+        {
             paths.remove(paths.size() - 1);
             invalidate();
         }
     }
 
     // this methods returns the current bitmap
-    public Bitmap save() {
+    public Bitmap save()
+    {
         return mBitmap;
     }
 
     // this is the main method where
     // the actual drawing takes place
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas)
+    {
         // save the current state of the canvas before,
         // to draw the background of the canvas
         canvas.save();
@@ -153,7 +164,8 @@ public class KeyboardCanvas extends View {
 
         // now, we iterate over the list of paths
         // and draw each path on the canvas
-        for (Stroke fp : paths) {
+        for (Stroke fp : paths)
+        {
             mPaint.setColor(fp.color);
             mPaint.setStrokeWidth(fp.strokeWidth);
             mCanvas.drawPath(fp.path, mPaint);
@@ -168,7 +180,8 @@ public class KeyboardCanvas extends View {
 
     // firstly, we create a new Stroke
     // and add it to the paths list
-    private void touchStart(float x, float y) {
+    private void touchStart(float x, float y)
+    {
         mPath = new Path();
         Stroke fp = new Stroke(currentColor, strokeWidth, mPath);
         paths.add(fp);
@@ -195,11 +208,13 @@ public class KeyboardCanvas extends View {
     // actually smooths the turns we create,
     // by calculating the mean position between
     // the previous position and current position
-    private void touchMove(float x, float y) {
+    private void touchMove(float x, float y)
+    {
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
 
-        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
+        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE)
+        {
             mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
             mX = x;
             mY = y;
@@ -212,7 +227,8 @@ public class KeyboardCanvas extends View {
     // at the end, we call the lineTo method
     // which simply draws the line until
     // the end position
-    private void touchUp() {
+    private void touchUp()
+    {
         mPath.lineTo(mX, mY);
     }
 
@@ -221,17 +237,21 @@ public class KeyboardCanvas extends View {
     // which has been taken place, and according
     // to that we call our desired methods
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event)
+    {
         float x = event.getX();
         float y = event.getY();
 
-        switch (event.getAction()) {
+        switch (event.getAction())
+        {
             case MotionEvent.ACTION_DOWN:
                 stopBoardClearTimer();
 
                 // comment in Data collection
                 if (!isDataCollection)
+                {
                     newCoordinateList();
+                }
 
                 touchStart(x, y);
                 invalidate();
@@ -245,11 +265,15 @@ public class KeyboardCanvas extends View {
                 // paths = new ArrayList<>();
                 // comment in new data collection
                 if (!isDataCollection)
+                {
                     startBoardClearTimer();
+                }
                 touchUp();
                 invalidate();
-                try {
-                    for (Point p : points) {
+                try
+                {
+                    for (Point p : points)
+                    {
                         System.out.println(p.x + " " + p.y);
                     }
 
@@ -257,8 +281,12 @@ public class KeyboardCanvas extends View {
 
                     // comment in Data collection
                     if (!isDataCollection)
+                    {
                         mKeyboardActionListener.onWritten(points, previous_points, result);
-                } catch (Exception e) {
+                    }
+                }
+                catch (Exception e)
+                {
                     e.printStackTrace();
                     invalidate();
                     return false;
@@ -268,7 +296,8 @@ public class KeyboardCanvas extends View {
         return true;
     }
 
-    public void setOnKeyboardActionListener(OnKeyboardActionListener listener) {
+    public void setOnKeyboardActionListener(OnKeyboardActionListener listener)
+    {
         mKeyboardActionListener = listener;
     }
 
@@ -277,29 +306,35 @@ public class KeyboardCanvas extends View {
      *
      * @return the listener attached to this keyboard
      */
-    protected OnKeyboardActionListener getOnKeyboardActionListener() {
+    protected OnKeyboardActionListener getOnKeyboardActionListener()
+    {
         return mKeyboardActionListener;
     }
 
-    public void newCoordinateList() {
+    public void newCoordinateList()
+    {
         previous_points = points;
         points = new ArrayList<>();
     }
 
-    public void clearBoard() {
+    public void clearBoard()
+    {
         paths = new ArrayList<>();
         invalidate();
     }
 
-    private void startBoardClearTimer() {
+    private void startBoardClearTimer()
+    {
         clearBoardHandler.postDelayed(clearBoard, 1000);
     }
 
-    private void stopBoardClearTimer() {
+    private void stopBoardClearTimer()
+    {
         clearBoardHandler.removeCallbacks(clearBoard);
     }
 
-    private void resetBoardClearTimer() {
+    private void resetBoardClearTimer()
+    {
         stopBoardClearTimer();
         startBoardClearTimer();
     }

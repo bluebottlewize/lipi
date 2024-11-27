@@ -1,6 +1,7 @@
 package org.bluebottlewize.lipi;
 
-public final class Alphabets {
+public final class Alphabets
+{
 
     // REFER WIKIPEDIA https://en.wikipedia.org/wiki/Malayalam_script#Vowel_letters_and_vowel_signs
 

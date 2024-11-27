@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:weightSum="10">
+
+        <!-- Key: 1 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 2 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:clickable="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 3 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 4 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 5 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 6 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="6"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 7 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="7"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 8 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 9 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="9"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: 0 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:weightSum="10">
+
+        <!-- Key: Q -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_q"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Q"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: W -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_w"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="W"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: E -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_e"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="E"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: R -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_r"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="R"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: T -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_t"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="T"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: Y -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_y"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Y"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: U -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_u"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="U"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: I -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_i"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="I"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: O -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_o"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="O"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: P -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_p"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="P"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:weightSum="10">
+
+        <!-- Key: A -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="A"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: S -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_s"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="S"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: D -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_d"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="D"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: F -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_f"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="F"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: G -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_g"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="G"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: H -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_h"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="H"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: J -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_j"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="J"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: K -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_k"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="K"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: L -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_key_background"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_l"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="L"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:weightSum="10">
+
+        <!-- Key: Capital -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1.5"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/typing_space_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:gravity="center"
+                android:src="@drawable/baseline_keyboard_capslock_30"
+                android:tint="@color/primary_foreground" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: Z -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_z"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Z"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: X -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_x"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="X"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: C -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_c"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="C"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: V -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_v"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="V"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: B -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_b"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="B"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: N -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_n"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="N"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: M -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_m"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: Delete -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1.5"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/delete_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:gravity="center"
+                android:src="@drawable/baseline_backspace_24"
+                android:tint="@color/primary_foreground" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:weightSum="11">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1.5"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/typing_keyboard_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:gravity="center"
+                android:src="@drawable/baseline_keyboard_30"
+                android:tint="@color/primary_foreground" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Key: Special Symbols -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_special"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="\?\>"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!--        Comma   -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_comma"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text=","
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="5"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/typing_space_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:gravity="center"
+                android:src="@drawable/baseline_space_bar_30"
+                android:tint="@color/primary_foreground" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:id="@+id/key_label_dot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="."
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1.5"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/keyColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/typing_enter_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_key_background"
+                android:gravity="center"
+                android:src="@drawable/baseline_keyboard_return_24"
+                android:tint="@color/primary_foreground" />
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,6 +1,6 @@
 package org.bluebottlewize.lipi;
-import static android.content.ContentValues.TAG;
 
+import static android.content.ContentValues.TAG;
 import static org.bluebottlewize.lipi.Alphabets.MAL_KOOTTAKSHARAM_SSA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_A;
 import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_AA;
@@ -33,7 +33,6 @@ import android.util.Log;
 import org.tensorflow.lite.Interpreter;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
@@ -85,7 +84,8 @@ public class Grahyam
 
     public MappedByteBuffer loadModelFile(String modelPath)
     {
-        try {
+        try
+        {
             AssetFileDescriptor fileDescriptor = context.getAssets().openFd(modelPath);
             FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
             FileChannel fileChannel = inputStream.getChannel();
@@ -100,13 +100,16 @@ public class Grahyam
     }
 
     // Method to run inference (example usage)
-    private void runInference(float[][] input, float[][] output) {
+    private void runInference(float[][] input, float[][] output)
+    {
         tflite.run(input, output);
     }
 
-    private void printTensorDetails() {
+    private void printTensorDetails()
+    {
         // Print input details
-        for (int i = 0; i < tflite.getInputTensorCount(); i++) {
+        for (int i = 0; i < tflite.getInputTensorCount(); i++)
+        {
             Log.d(TAG, "Input Tensor " + i + ": " + Arrays.toString(tflite.getInputTensor(i).shape()));
         }
 
@@ -126,7 +129,7 @@ public class Grahyam
 
         float[][][] inputTensor = new float[1][137][2];
 
-        for (int i = 0;i < 137;++i)
+        for (int i = 0; i < 137; ++i)
         {
             inputTensor[0][i][0] = padded_points.get(i).x;
             inputTensor[0][i][1] = padded_points.get(i).y;
@@ -149,7 +152,8 @@ public class Grahyam
         {
             float num = outputTensor[0][i];
 
-            if (num > topThree[0]) {
+            if (num > topThree[0])
+            {
                 topThree[2] = topThree[1];
                 topThree[1] = topThree[0];
                 topThree[0] = num;
@@ -157,19 +161,22 @@ public class Grahyam
                 result[2] = result[1];
                 result[1] = result[0];
                 result[0] = letters[i];
-            } else if (num > topThree[1]) {
+            }
+            else if (num > topThree[1])
+            {
                 topThree[2] = topThree[1];
                 topThree[1] = num;
 
                 result[2] = result[1];
                 result[1] = letters[i];
-            } else if (num > topThree[2]) {
+            }
+            else if (num > topThree[2])
+            {
                 topThree[2] = num;
 
                 result[2] = letters[i];
             }
         }
-
 
 
 //        for (int i = 1;i < 12;++i)
@@ -201,7 +208,7 @@ public class Grahyam
 
         float[][][] inputTensor = new float[1][137][2];
 
-        for (int i = 0;i < 137;++i)
+        for (int i = 0; i < 137; ++i)
         {
             inputTensor[0][i][0] = padded_points.get(i).x;
             inputTensor[0][i][1] = padded_points.get(i).y;
@@ -224,7 +231,8 @@ public class Grahyam
         {
             float num = outputTensor[0][i];
 
-            if (num > topThree[0]) {
+            if (num > topThree[0])
+            {
                 topThree[2] = topThree[1];
                 topThree[1] = topThree[0];
                 topThree[0] = num;
@@ -232,19 +240,22 @@ public class Grahyam
                 result[2] = result[1];
                 result[1] = result[0];
                 result[0] = letters[i];
-            } else if (num > topThree[1]) {
+            }
+            else if (num > topThree[1])
+            {
                 topThree[2] = topThree[1];
                 topThree[1] = num;
 
                 result[2] = result[1];
                 result[1] = letters[i];
-            } else if (num > topThree[2]) {
+            }
+            else if (num > topThree[2])
+            {
                 topThree[2] = num;
 
                 result[2] = letters[i];
             }
         }
-
 
 
 //        for (int i = 1;i < 12;++i)
@@ -319,7 +330,8 @@ public class Grahyam
 
         float n_factor = n_factor_x;
 
-        if (y_range > x_range) {
+        if (y_range > x_range)
+        {
             n_factor = n_factor_y;
         }
 
@@ -344,7 +356,7 @@ public class Grahyam
 
         if (points.size() < 137)
         {
-            for (int i = 0;i < 137 - points.size();++i)
+            for (int i = 0; i < 137 - points.size(); ++i)
             {
                 padded_points.add(new Point(-10, -10));
             }

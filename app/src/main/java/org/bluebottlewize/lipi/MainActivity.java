@@ -4,18 +4,7 @@ import static org.bluebottlewize.lipi.Alphabets.CHILLAKSHARAMS;
 import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_CONSONANT_RA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_CONSONANT_VA;
 import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_CONSONANT_YA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_VOWELS;
 import static org.bluebottlewize.lipi.Alphabets.MAL_KOOTTAKSHARAMS;
-import static org.bluebottlewize.lipi.Alphabets.MAL_KOOTTAKSHARAM_SSA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_A;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_AA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_E;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_ERU;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_I;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_O;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_AA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_E;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_EE;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_I;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_II;
@@ -24,11 +13,6 @@ import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_R;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_U;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_UU;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_VIRAMAM;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KHA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_NGA;
 import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_CA;
 import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_KA;
 import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_PA;
@@ -38,19 +22,15 @@ import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_YA;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -59,14 +39,13 @@ import androidx.documentfile.provider.DocumentFile;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     KeyboardCanvas canvas;
 
@@ -130,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -146,9 +126,11 @@ public class MainActivity extends AppCompatActivity {
         letterbox = findViewById(R.id.letter_view);
 
         ViewTreeObserver vto = canvas.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
+        {
             @Override
-            public void onGlobalLayout() {
+            public void onGlobalLayout()
+            {
                 canvas.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 int width = canvas.getMeasuredWidth();
                 int height = canvas.getMeasuredHeight();
@@ -164,9 +146,11 @@ public class MainActivity extends AppCompatActivity {
 
         canvas.isDataCollection = true;
 
-        canvas.setOnKeyboardActionListener(new KeyboardCanvas.OnKeyboardActionListener() {
+        canvas.setOnKeyboardActionListener(new KeyboardCanvas.OnKeyboardActionListener()
+        {
             @Override
-            public void onWritten(ArrayList<Point> points, ArrayList<Point> previous_points, String[] predictions) {
+            public void onWritten(ArrayList<Point> points, ArrayList<Point> previous_points, String[] predictions)
+            {
                 // String result = grahyam.runInference(points)[0];
                 // System.out.println(predictions[0]);
 //                System.out.println(points.size());
@@ -182,20 +166,24 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_OPEN_DIRECTORY && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE_OPEN_DIRECTORY && resultCode == Activity.RESULT_OK)
+        {
             Uri directoryUri = data.getData();
             takePersistableUriPermission(directoryUri);
             savedDirectory = directoryUri;
         }
     }
 
-    private void takePersistableUriPermission(Uri uri) {
+    private void takePersistableUriPermission(Uri uri)
+    {
         getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
     }
 
-    public void writeToFile(String letter, ArrayList<Point> points) {
+    public void writeToFile(String letter, ArrayList<Point> points)
+    {
 
         File train_dir = this.getDir("mal-htr", MODE_PRIVATE);
 
@@ -206,7 +194,8 @@ public class MainActivity extends AppCompatActivity {
 
         DocumentFile letterFolder = savedFolder.findFile(letter);
 
-        if (letterFolder == null) {
+        if (letterFolder == null)
+        {
             letterFolder = savedFolder.createDirectory(letter);
         }
 
@@ -215,23 +204,30 @@ public class MainActivity extends AppCompatActivity {
 
         DocumentFile lastModifiedFile = null;
 
-        for (DocumentFile file : files) {
-            if (file.isFile()) {
-                if (lastModifiedFile == null || file.lastModified() > lastModifiedFile.lastModified()) {
+        for (DocumentFile file : files)
+        {
+            if (file.isFile())
+            {
+                if (lastModifiedFile == null || file.lastModified() > lastModifiedFile.lastModified())
+                {
                     lastModifiedFile = file;
                 }
             }
         }
 
-        if (lastModifiedFile != null) {
+        if (lastModifiedFile != null)
+        {
             filename = lastModifiedFile.getName();
         }
 
         String newFileName = null;
 
-        if (filename == null) {
+        if (filename == null)
+        {
             newFileName = letter + "_" + String.format("%06d", 1);
-        } else {
+        }
+        else
+        {
             int last = Integer.parseInt(filename.substring(filename.indexOf('_') + 1, filename.indexOf('_') + 1 + 6));
             ++last;
             newFileName = letter + "_" + String.format("%06d", last);
@@ -239,38 +235,46 @@ public class MainActivity extends AppCompatActivity {
 
         DocumentFile outputFile = letterFolder.createFile("text/plain", newFileName);
 
-        if (outputFile != null) {
+        if (outputFile != null)
+        {
             try (OutputStream outputStream = getContentResolver().openOutputStream(outputFile.getUri());
-                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {
+                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream)))
+            {
 
                 // Write content to the file
 
                 StringBuilder buffer = new StringBuilder();
 
-                for (Point p : points) {
+                for (Point p : points)
+                {
                     buffer.append(p.x).append(" ").append(p.y).append("\n");
                 }
 
                 writer.write(buffer.toString());
                 writer.flush();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 e.printStackTrace();
             }
         }
     }
 
-    void nextLetter() {
+    void nextLetter()
+    {
         currentLetter = letters[i % (letters.length)];
         letterbox.setText(currentLetter);
 
         ++i;
     }
 
-    public void exportData(View view) {
+    public void exportData(View view)
+    {
         ZipUtils.zipFolderAndSaveToExternalStorage(this, "mal-htr", savedDirectory);
     }
 
-    public void saveCoordinates(View view) {
+    public void saveCoordinates(View view)
+    {
         System.out.println(canvas.points.size());
         writeToFile(currentLetter, canvas.points);
         nextLetter();
@@ -298,7 +302,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            try {
+            try
+            {
                 no = Integer.parseInt(load_no);
             }
             catch (Exception e)
