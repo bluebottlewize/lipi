@@ -47,6 +47,49 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
         handwriting_view = keyboardLayout.findViewById(R.id.handwriting_view);
         typing_view = keyboardLayout.findViewById(R.id.typing_view);
 
+        EnglishKeyboardManager keyboardManager = new EnglishKeyboardManager(typing_view);
+
+        keyboardManager.setAllKeysClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                inputConnection.commitText(((TextView) v).getText().toString(), 1);
+
+                if (keyboardManager.isCapslock())
+                {
+                    keyboardManager.toggleCapslock();
+                }
+            }
+        });
+
+        keyboardManager.setDeleteButtonClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                inputConnection.deleteSurroundingText(1, 0);
+            }
+        });
+
+        keyboardManager.setEnterButtonClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                inputConnection.commitText("\n", 1);
+            }
+        });
+
+        keyboardManager.setSpaceButtonClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                inputConnection.commitText(" ", 1);
+            }
+        });
+
         ImageButton spaceButton = keyboardLayout.findViewById(R.id.space_button);
         ImageButton backspaceButton = keyboardLayout.findViewById(R.id.backspace_button);
         ImageButton hKeyboardButton = keyboardLayout.findViewById(R.id.keyboard_button);

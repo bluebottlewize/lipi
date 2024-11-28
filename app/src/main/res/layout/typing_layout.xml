@@ -2,24 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:weightSum="5">
+    android:layout_height="280dp"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/typing_row_1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
         android:weightSum="10">
 
         <!-- Key: 1 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -43,7 +44,7 @@
         <!-- Key: 2 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -68,7 +69,7 @@
         <!-- Key: 3 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -92,7 +93,7 @@
         <!-- Key: 4 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -116,7 +117,7 @@
         <!-- Key: 5 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -140,7 +141,7 @@
         <!-- Key: 6 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -164,7 +165,7 @@
         <!-- Key: 7 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -188,7 +189,7 @@
         <!-- Key: 8 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -212,7 +213,7 @@
         <!-- Key: 9 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -236,7 +237,7 @@
         <!-- Key: 0 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
@@ -260,19 +261,20 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/typing_row_2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
         android:weightSum="10">
 
         <!-- Key: Q -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -296,7 +298,7 @@
         <!-- Key: W -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -320,7 +322,7 @@
         <!-- Key: E -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -344,7 +346,7 @@
         <!-- Key: R -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -368,7 +370,7 @@
         <!-- Key: T -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -392,7 +394,7 @@
         <!-- Key: Y -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -416,7 +418,7 @@
         <!-- Key: U -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -440,7 +442,7 @@
         <!-- Key: I -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -464,7 +466,7 @@
         <!-- Key: O -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -488,7 +490,7 @@
         <!-- Key: P -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
@@ -512,19 +514,20 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/typing_row_3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
         android:weightSum="10">
 
         <!-- Key: A -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -549,7 +552,7 @@
         <!-- Key: S -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -574,7 +577,7 @@
         <!-- Key: D -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -599,7 +602,7 @@
         <!-- Key: F -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -624,7 +627,7 @@
         <!-- Key: G -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -649,7 +652,7 @@
         <!-- Key: H -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -674,7 +677,7 @@
         <!-- Key: J -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -699,7 +702,7 @@
         <!-- Key: K -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -724,7 +727,7 @@
         <!-- Key: L -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
@@ -749,29 +752,30 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/typing_row_4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:weightSum="10">
+        android:weightSum="7">
 
         <!-- Key: Capital -->
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="4dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:layout_weight="1.5"
+            android:layout_weight="0"
             android:clickable="true"
             app:cardBackgroundColor="@color/keyColor"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp">
 
             <ImageButton
-                android:id="@+id/typing_space_button"
+                android:id="@+id/typing_capslock_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_key_background"
@@ -783,7 +787,7 @@
         <!-- Key: Z -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -807,7 +811,7 @@
         <!-- Key: X -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -831,7 +835,7 @@
         <!-- Key: C -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -855,7 +859,7 @@
         <!-- Key: V -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -879,7 +883,7 @@
         <!-- Key: B -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -903,7 +907,7 @@
         <!-- Key: N -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -927,7 +931,7 @@
         <!-- Key: M -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
@@ -950,18 +954,18 @@
 
         <!-- Key: Delete -->
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1.5"
+            android:layout_marginRight="2dp"
+            android:layout_weight="0"
             android:clickable="true"
             app:cardBackgroundColor="@color/keyColor"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp">
 
             <ImageButton
-                android:id="@+id/delete_button"
+                android:id="@+id/typing_delete_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_key_background"
@@ -973,21 +977,21 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/typing_row_5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
+        android:layout_height="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:weightSum="11">
+        android:weightSum="8">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="4dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:layout_weight="1.5"
+            android:layout_weight="0"
             android:clickable="true"
             app:cardBackgroundColor="@color/keyColor"
             app:cardCornerRadius="4dp"
@@ -1007,8 +1011,8 @@
         <!-- Key: Special Symbols -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="4dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:clickable="true"
@@ -1032,8 +1036,8 @@
         <!--        Comma   -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="4dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:clickable="true"
@@ -1057,8 +1061,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="4dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="5"
             android:clickable="true"
@@ -1079,8 +1083,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="4dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:clickable="true"
@@ -1102,11 +1106,11 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1.5"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="0"
             android:clickable="true"
             app:cardBackgroundColor="@color/keyColor"
             app:cardCornerRadius="4dp"
