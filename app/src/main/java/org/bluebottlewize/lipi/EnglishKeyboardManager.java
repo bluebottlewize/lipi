@@ -3,10 +3,9 @@ package org.bluebottlewize.lipi;
 import android.graphics.Rect;
 import android.view.TouchDelegate;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import androidx.cardview.widget.CardView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,7 +83,11 @@ public class EnglishKeyboardManager
             }
         });
 
-        expandTouchArea();
+        expandTouchArea(R.id.typing_row_1, 5, -10, 10, -10, 10);
+        expandTouchArea(R.id.typing_row_2, 5, 0, 10, -10, 10);
+        expandTouchArea(R.id.typing_row_3, 5, 0, 10, -10, 10);
+        expandTouchArea(R.id.typing_row_4, 5, 0, 10, -10, 10);
+        expandTouchArea(R.id.typing_row_5, 5, 0, 10, -10, 10);
     }
 
 
@@ -155,76 +158,45 @@ public class EnglishKeyboardManager
         }
     }
 
-    public void expandTouchArea()
+    public void expandTouchArea(int rowID, int middle, int extraPixelsTop, int extraPixelsBottom, int extraPixelsLeft, int extraPixelsRight)
     {
-        TextView key = typingView.findViewById(R.id.key_label_k);
+        View row = typingView.findViewById(rowID);
+        TouchDelegateComposite touchDelegateComposite = new TouchDelegateComposite(row);
 
-        ((View) key.getParent()).post(new Runnable()
+        for (int i = 0; i < ((ViewGroup) row).getChildCount(); ++i)
         {
-            @Override
-            public void run()
+            ViewGroup key = (ViewGroup) ((ViewGroup) row).getChildAt(i);
+
+//            System.out.println(((TextView) (key).getChildAt(0)).getText());
+
+//            System.out.println(key.getText());
+            int finalI = i;
+            key.post(new Runnable()
             {
-                Rect delegateArea = new Rect();
-
-                ((CardView) key.getParent()).getHitRect(delegateArea);
-
-                delegateArea.top -= 0;
-                delegateArea.bottom += 20;
-                delegateArea.left -= 5;
-                delegateArea.right += 5;
-
-                System.out.println(delegateArea.top + " " + delegateArea.left + " " + delegateArea.right + " " + delegateArea.bottom);
-
-                TouchDelegate expandedArea = new TouchDelegate(delegateArea, (View) key.getParent());
-
-                // give the delegate to an ancestor of the view we're
-                // delegating the
-                // area to
-                if (key.getParent() instanceof View)
+                @Override
+                public void run()
                 {
-                    System.out.println("set delegate");
-                    ((View) key.getParent().getParent()).setTouchDelegate(expandedArea);
+                    Rect delegateArea = new Rect();
+                    key.getHitRect(delegateArea);
+
+                    if (finalI < middle)
+                    {
+                        delegateArea.left += extraPixelsLeft;
+                    }
+                    else
+                    {
+                        delegateArea.right += extraPixelsRight;
+                    }
+                    delegateArea.top += extraPixelsTop;
+                    delegateArea.bottom += extraPixelsBottom;
+
+                    TouchDelegate expandedArea = new TouchDelegate(delegateArea, key);
+
+                    touchDelegateComposite.addDelegate(expandedArea);
                 }
-            }
-        });
+            });
+        }
 
-//        TouchDelegateComposite touchDelegateComposite = new TouchDelegateComposite(typingView.findViewById(R.id.typing_row_3));
-
-//        for (TextView key : letterMap.values())
-//        {
-//            ((View) key.getParent()).post(new Runnable()
-//            {
-//                @Override
-//                public void run()
-//                {
-//                    Rect delegateArea = new Rect();
-//                    Rect delegateArea2 = new Rect();
-//                    key.getHitRect(delegateArea);
-//                    ((View) key.getParent()).getHitRect(delegateArea2);
-//                    delegateArea.top -= 200;
-//                    delegateArea.bottom += 200;
-//                    delegateArea.left -= 200;
-//                    delegateArea.right += 200;
-//
-//                    delegateArea2.top -= 200;
-//                    delegateArea2.bottom += 200;
-//                    delegateArea2.left -= 200;
-//                    delegateArea2.right += 200;
-//
-//                    TouchDelegate expandedArea = new TouchDelegate(delegateArea, key);
-//                    TouchDelegate expandedArea2 = new TouchDelegate(delegateArea2, (View) key.getParent());
-//
-//                    // give the delegate to an ancestor of the view we're
-//                    // delegating the
-//                    // area to
-//                    if (key.getParent() instanceof View)
-//                    {
-//                        System.out.println("set delegate");
-//                        ((View) key.getParent()).setTouchDelegate(expandedArea);
-//                        touchDelegateComposite.addDelegate(expandedArea2);
-//                    }
-//                }
-//            });
-//        }
+        row.setTouchDelegate(touchDelegateComposite);
     }
 }

@@ -33,6 +33,9 @@ public class TouchDelegateComposite extends TouchDelegate
         boolean res = false;
         float x = event.getX();
         float y = event.getY();
+
+        System.out.println("touched");
+
         for (TouchDelegate delegate : delegates)
         {
             System.out.println("delegating");
