@@ -1,33 +1,21 @@
 package org.bluebottlewize.lipi;
 
 import static android.content.ContentValues.TAG;
+import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_CONSONANTS;
+import static org.bluebottlewize.lipi.Alphabets.MAL_HALF_VOWELS;
 import static org.bluebottlewize.lipi.Alphabets.MAL_KOOTTAKSHARAM_SSA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_A;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_AA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_E;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_ERU;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_I;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_O;
-import static org.bluebottlewize.lipi.Alphabets.MAL_SWARAKSHARAM_U;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_AA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_E;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_EE;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_I;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_II;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_OU;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_R;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_U;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_UU;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_VIRAMAM;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_GHA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_KHA;
-import static org.bluebottlewize.lipi.Alphabets.MAL_VYANJANAKSHARAM_NGA;
+import static org.bluebottlewize.lipi.Alphabets.SWARAKSHARAMS_STANDALONE;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_CA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_KA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_PA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_TA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_TTA;
+import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_YA;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Point;
+import android.os.Build;
 import android.util.Log;
 
 import org.tensorflow.lite.Interpreter;
@@ -37,35 +25,11 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Grahyam
 {
-    String letters[] = new String[]{
-            MAL_SWARAKSHARAM_A,
-            MAL_SWARAKSHARAM_AA,
-            MAL_SWARAKSHARAM_I,
-            MAL_SWARAKSHARAM_U,
-            MAL_SWARAKSHARAM_ERU,
-            MAL_SWARAKSHARAM_E,
-            MAL_SWARAKSHARAM_O,
-            MAL_VYANJANAKSHARAM_KA,
-            MAL_VYANJANAKSHARAM_KHA,
-            MAL_VYANJANAKSHARAM_GA,
-            MAL_VYANJANAKSHARAM_GHA,
-            MAL_VYANJANAKSHARAM_NGA,
-            MAL_KOOTTAKSHARAM_SSA,
-            MAL_VOWEL_AA,
-            MAL_VOWEL_I,
-            MAL_VOWEL_II,
-            MAL_VOWEL_U,
-            MAL_VOWEL_UU,
-            MAL_VOWEL_R,
-            MAL_VOWEL_E,
-            MAL_VOWEL_EE,
-            MAL_VOWEL_OU,
-            MAL_VOWEL_VIRAMAM,
-    };
-
+    String[] letters;
 
     private Context context;
     private Interpreter tflite;
@@ -79,6 +43,8 @@ public class Grahyam
         if (tflite != null)
         {
             printTensorDetails();
+
+            letters = loadLetters();
         }
     }
 
@@ -363,5 +329,27 @@ public class Grahyam
         }
 
         return padded_points;
+    }
+
+    public String[] loadLetters()
+    {
+        String[] result = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+        {
+            result = Stream.of(
+                            SWARAKSHARAMS_STANDALONE,
+                            MAL_HALF_VOWELS,
+                            MAL_HALF_CONSONANTS,
+                            VYANJANAKSHARAMS_KA,
+                            VYANJANAKSHARAMS_CA,
+                            VYANJANAKSHARAMS_TA,
+                            VYANJANAKSHARAMS_TTA,
+                            VYANJANAKSHARAMS_PA,
+                            VYANJANAKSHARAMS_YA
+                    )
+                    .flatMap(Arrays::stream)
+                    .toArray(String[]::new);
+        }
+        return result;
     }
 }
