@@ -13,6 +13,7 @@ import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_R;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_U;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_UU;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_VIRAMAM;
+import static org.bluebottlewize.lipi.Alphabets.SWARAKSHARAMS_STANDALONE;
 import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_CA;
 import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_KA;
 import static org.bluebottlewize.lipi.Alphabets.VYANJANAKSHARAMS_PA;
@@ -315,34 +316,37 @@ public class MainActivity extends AppCompatActivity
         switch (no)
         {
             case 0:
-                letters = Arrays.copyOf(letters_0, letters_0.length);
+                letters = Arrays.copyOf(SWARAKSHARAMS_STANDALONE, SWARAKSHARAMS_STANDALONE.length);
                 break;
             case 1:
-                letters = Arrays.copyOf(VYANJANAKSHARAMS_KA, VYANJANAKSHARAMS_KA.length);
+                letters = Arrays.copyOf(letters_0, letters_0.length);
                 break;
             case 2:
-                letters = Arrays.copyOf(VYANJANAKSHARAMS_CA, VYANJANAKSHARAMS_CA.length);
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_KA, VYANJANAKSHARAMS_KA.length);
                 break;
             case 3:
-                letters = Arrays.copyOf(VYANJANAKSHARAMS_TTA, VYANJANAKSHARAMS_TTA.length);
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_CA, VYANJANAKSHARAMS_CA.length);
                 break;
             case 4:
-                letters = Arrays.copyOf(VYANJANAKSHARAMS_TA, VYANJANAKSHARAMS_TA.length);
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_TTA, VYANJANAKSHARAMS_TTA.length);
                 break;
             case 5:
-                letters = Arrays.copyOf(VYANJANAKSHARAMS_PA, VYANJANAKSHARAMS_PA.length);
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_TA, VYANJANAKSHARAMS_TA.length);
                 break;
             case 6:
-                letters = Arrays.copyOf(VYANJANAKSHARAMS_YA, VYANJANAKSHARAMS_YA.length);
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_PA, VYANJANAKSHARAMS_PA.length);
                 break;
             case 7:
-                letters = Arrays.copyOf(CHILLAKSHARAMS, CHILLAKSHARAMS.length);
+                letters = Arrays.copyOf(VYANJANAKSHARAMS_YA, VYANJANAKSHARAMS_YA.length);
                 break;
             case 8:
+                letters = Arrays.copyOf(CHILLAKSHARAMS, CHILLAKSHARAMS.length);
+                break;
+            case 9:
                 letters = Arrays.copyOf(MAL_KOOTTAKSHARAMS, MAL_KOOTTAKSHARAMS.length);
                 break;
             default:
-                letters = Arrays.copyOf(letters_0, letters_0.length);
+                letters = Arrays.copyOf(SWARAKSHARAMS_STANDALONE, SWARAKSHARAMS_STANDALONE.length);
                 break;
         }
 

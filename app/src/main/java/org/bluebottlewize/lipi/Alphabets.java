@@ -212,6 +212,17 @@ public final class Alphabets
             MAL_SWARAKSHARAM_OU
     };
 
+    public static final String[] SWARAKSHARAMS_STANDALONE = {
+            MAL_SWARAKSHARAM_A,
+            MAL_SWARAKSHARAM_AA,
+            MAL_SWARAKSHARAM_I,
+            MAL_SWARAKSHARAM_U,
+            MAL_SWARAKSHARAM_ERU,
+            MAL_SWARAKSHARAM_E,
+            MAL_SWARAKSHARAM_EE,
+            MAL_SWARAKSHARAM_O,
+    };
+
     public static final String[] VYANJANAKSHARAMS_KA = {
             MAL_VYANJANAKSHARAM_KA,
             MAL_VYANJANAKSHARAM_KHA,
