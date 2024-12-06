@@ -114,9 +114,9 @@ public class EnglishKeyboardManager
         }
     }
 
-    public void setDeleteButtonClickListener(View.OnClickListener listener)
+    public void setDeleteButtonClickListener(View.OnTouchListener listener)
     {
-        tDeleteButton.setOnClickListener(listener);
+        tDeleteButton.setOnTouchListener(listener);
     }
 
     public void setEnterButtonClickListener(View.OnClickListener listener)

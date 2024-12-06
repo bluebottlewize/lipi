@@ -3,8 +3,13 @@ package org.bluebottlewize.lipi;
 import static org.bluebottlewize.lipi.Alphabets.MAL_VOWEL_E;
 import static org.bluebottlewize.lipi.Alphabets.ZERO_WIDTH_SPACE;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Point;
 import android.inputmethodservice.InputMethodService;
+import android.os.Handler;
+import android.os.Vibrator;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
@@ -21,6 +26,8 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
 
     InputConnection inputConnection;
 
+    Handler deleteHandler;
+
     TextView prediction_box_1;
     TextView prediction_box_2;
     TextView prediction_box_3;
@@ -33,6 +40,71 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
     Grahyam grahyam;
 
     boolean isHandwritingMode = true;
+
+    private final int longClickDuration = 500;
+    private boolean isLongPress = false;
+    private int deletedCharacterCount = 0;
+
+
+    View.OnTouchListener backspaceClickListener = new View.OnTouchListener()
+    {
+        @SuppressLint("ClickableViewAccessibility")
+        @Override
+        public boolean onTouch(View v, MotionEvent event)
+        {
+            switch (event.getAction())
+            {
+                case MotionEvent.ACTION_DOWN:
+
+                    isLongPress = true;
+                    deleteHandler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            if (isLongPress)
+                            {
+                                deleteHandler.postDelayed(new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        if (isLongPress)
+                                        {
+                                            inputConnection.deleteSurroundingText(1, 0);
+                                            ++deletedCharacterCount;
+
+                                            int delay = 100;
+
+                                            if (deletedCharacterCount > 10)
+                                            {
+                                                delay = 50;
+                                            }
+                                            else if (deletedCharacterCount > 4)
+                                            {
+                                                delay = 75;
+                                            }
+
+                                            deleteHandler.postDelayed(this, delay);
+                                        }
+                                    }
+                                }, 100);
+                            }
+                        }
+                    }, 300);
+
+                    break;
+                case MotionEvent.ACTION_UP:
+                    inputConnection.deleteSurroundingText(1, 0);
+                    deletedCharacterCount = 0;
+                    isLongPress = false;
+                    break;
+            }
+
+            return true;
+        }
+    };
+
 
     @Override
     public View onCreateInputView()
@@ -63,14 +135,9 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
             }
         });
 
-        keyboardManager.setDeleteButtonClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                inputConnection.deleteSurroundingText(1, 0);
-            }
-        });
+        deleteHandler = new Handler();
+
+        keyboardManager.setDeleteButtonClickListener(backspaceClickListener);
 
         keyboardManager.setEnterButtonClickListener(new View.OnClickListener()
         {
