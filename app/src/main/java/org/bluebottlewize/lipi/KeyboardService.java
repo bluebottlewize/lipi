@@ -45,6 +45,42 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
     private boolean isLongPress = false;
     private int deletedCharacterCount = 0;
 
+    Runnable deleteRunnable = new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            if (isLongPress)
+            {
+                deleteHandler.postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        if (isLongPress)
+                        {
+                            inputConnection.deleteSurroundingText(1, 0);
+                            ++deletedCharacterCount;
+
+                            int delay = 100;
+
+                            if (deletedCharacterCount > 10)
+                            {
+                                delay = 50;
+                            }
+                            else if (deletedCharacterCount > 4)
+                            {
+                                delay = 75;
+                            }
+
+                            deleteHandler.postDelayed(this, delay);
+                        }
+                    }
+                }, 100);
+            }
+        }
+    };
+
 
     View.OnTouchListener backspaceClickListener = new View.OnTouchListener()
     {
@@ -57,44 +93,11 @@ public class KeyboardService extends InputMethodService implements KeyboardCanva
                 case MotionEvent.ACTION_DOWN:
 
                     isLongPress = true;
-                    deleteHandler.postDelayed(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            if (isLongPress)
-                            {
-                                deleteHandler.postDelayed(new Runnable()
-                                {
-                                    @Override
-                                    public void run()
-                                    {
-                                        if (isLongPress)
-                                        {
-                                            inputConnection.deleteSurroundingText(1, 0);
-                                            ++deletedCharacterCount;
-
-                                            int delay = 100;
-
-                                            if (deletedCharacterCount > 10)
-                                            {
-                                                delay = 50;
-                                            }
-                                            else if (deletedCharacterCount > 4)
-                                            {
-                                                delay = 75;
-                                            }
-
-                                            deleteHandler.postDelayed(this, delay);
-                                        }
-                                    }
-                                }, 100);
-                            }
-                        }
-                    }, 300);
+                    deleteHandler.postDelayed(deleteRunnable, 300);
 
                     break;
                 case MotionEvent.ACTION_UP:
+                    deleteHandler.removeCallbacks(deleteRunnable);
                     inputConnection.deleteSurroundingText(1, 0);
                     deletedCharacterCount = 0;
                     isLongPress = false;

@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_CODE_OPEN_DIRECTORY = 200;
 
     TextView letterbox;
+    TextView dataNumberBox;
 
     EditText load_box;
 
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity
 
         canvas = findViewById(R.id.keyboard_canvas);
         letterbox = findViewById(R.id.letter_view);
+        dataNumberBox = findViewById(R.id.data_last_number_box);
 
         ViewTreeObserver vto = canvas.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
@@ -265,6 +267,7 @@ public class MainActivity extends AppCompatActivity
     {
         currentLetter = letters[i % (letters.length)];
         letterbox.setText(currentLetter);
+        setDataNumber(currentLetter);
 
         ++i;
     }
@@ -352,5 +355,27 @@ public class MainActivity extends AppCompatActivity
 
         i = 0;
         nextLetter();
+    }
+
+    public void setDataNumber(String letter)
+    {
+        File train_dir = this.getDir("mal-htr", MODE_PRIVATE);
+
+        DocumentFile savedFolder = DocumentFile.fromFile(train_dir);
+        String filename = null;
+
+        assert savedFolder != null;
+
+        DocumentFile letterFolder = savedFolder.findFile(letter);
+
+        if (letterFolder == null)
+        {
+            letterFolder = savedFolder.createDirectory(letter);
+        }
+
+        assert letterFolder != null;
+        DocumentFile[] files = letterFolder.listFiles();
+
+        dataNumberBox.setText(Integer.toString(files.length));
     }
 }

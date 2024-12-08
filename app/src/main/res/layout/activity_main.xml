@@ -95,4 +95,28 @@
         app:layout_constraintStart_toEndOf="@+id/load_box"
         app:layout_constraintTop_toTopOf="@+id/load_box" />
 
+    <Button
+        android:id="@+id/clear_data_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="CLEAR"
+        app:layout_constraintBottom_toTopOf="@+id/export_button"
+        app:layout_constraintEnd_toEndOf="@+id/export_button"
+        app:layout_constraintStart_toStartOf="@+id/export_button" />
+
+    <TextView
+        android:id="@+id/data_last_number_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:textAlignment="center"
+        android:textColor="@color/primary_background"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/letter_view"
+        app:layout_constraintStart_toStartOf="@+id/letter_view"
+        app:layout_constraintTop_toBottomOf="@+id/letter_view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
